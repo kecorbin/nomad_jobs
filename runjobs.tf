@@ -81,7 +81,8 @@ resource "nomad_job" "vaultupdater" {
   count = length(local.workers)
    jobspec = "${element(data.template_file.vault-ssh-helper.*.rendered, count.index)}"
  }
- /*
+ */
+
 
 
 # data "template_file" "vault-ssh-helper#   template = ${file#   vars = {
@@ -92,7 +93,7 @@ resource "nomad_job" "vaultupdater" {
 #   jobspec = "${data.template_file.vault-ssh-ca.rendered}"
 # }
 
-/*
+
 ### Monitoring Stack (may need to be applied twice)
 data "template_file" "prometheus_monitoring" {
   template = "${file("./prometheus.nomad.tpl")}"
@@ -133,4 +134,3 @@ resource "grafana_dashboard" "Vault" {
 #   password      = "bar"
 #   database_name = "mydb"
 # }
-*/
