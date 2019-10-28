@@ -27,11 +27,11 @@ resource "nomad_job" "nginx-pki" {
   jobspec = "${file("./nginx-pki.nomad")}"
 }
 
+/*
 resource "nomad_job" "hashibo" {
   jobspec = "${file("./hashibo.nomad")}"
 }
 
-/*
 resource "nomad_job" "consul-federation" {
   jobspec = "${file("./consul-federation.nomad")}"
 }
@@ -68,6 +68,7 @@ resource "nomad_job" "vaultupdater" {
 }
 */
 
+/*
  data "template_file" "vault-ssh-helper" {
    count = length(local.workers)
    template = "${file("./vault-ssh-helper.nomad.tpl")}"
@@ -80,6 +81,7 @@ resource "nomad_job" "vaultupdater" {
   count = length(local.workers)
    jobspec = "${element(data.template_file.vault-ssh-helper.*.rendered, count.index)}"
  }
+ /*
 
 
 # data "template_file" "vault-ssh-helper#   template = ${file#   vars = {
