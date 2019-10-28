@@ -4,8 +4,8 @@ provider "nomad" {
 }
 locals {
   fabio  = "${data.terraform_remote_state.demostack.outputs.Primary_Fabio}"
-  workers = "${data.terraform_remote_state.demostack.outputs.nomad_tag_workers}"
-  servers = "${data.terraform_remote_state.demostack.outputs.nomad_tag_servers}"
+  workers = "${data.terraform_remote_state.demostack.outputs.Primary_workers_Nodes}"
+  servers = "${data.terraform_remote_state.demostack.outputs.Primary_servers_nodes}"
 }
 
 
@@ -79,7 +79,7 @@ resource "nomad_job" "vaultupdater" {
  resource "nomad_job" "vault-ssh-helper" {
   count = length(local.workers)
    jobspec = "${element(data.template_file.vault-ssh-helper.*.rendered, count.index)}"
- } 
+ }
 
 
 # data "template_file" "vault-ssh-helper#   template = ${file#   vars = {
